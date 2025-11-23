@@ -1,131 +1,282 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  <title>Mapa Interativo DINTER e MINTER CDS/UnB 30 anos</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
-  <style>
-    #map {
-      height: 100vh;
-    }
-    .legend {
-      background: white;
-      padding: 10px;
-      line-height: 1.5;
-      border: 1px solid #ccc;
-    }
-    .legend i {
-      width: 18px;
-      height: 18px;
-      float: left;
-      margin-right: 8px;
-      opacity: 0.8;
-    }
-  </style>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_939bf1b16ab3708c3736c57bc1faa731 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
 </head>
 <body>
-  <div id="map"></div>
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-  <script>
-    var map = L.map('map').setView([-10, -50], 4);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
-
-    var marker = L.circleMarker([-15.7684, -47.8695], {
-        color: 'red',
-        radius: 12,
-        fillOpacity: 0.9
-    }).addTo(map).bindPopup("CDS/UnB (Origem)");
     
-    var marker = L.circleMarker([-3.13, -60.02], {
-        color: 'blue',
-        radius: 12,
-        fillOpacity: 0.9
-    }).addTo(map).bindPopup("Amazonas (Doutorado)");
     
-    var marker = L.circleMarker([0.03, -51.07], {
-        color: 'green',
-        radius: 12,
-        fillOpacity: 0.9
-    }).addTo(map).bindPopup("Amapá (Mestrado)");
-    
-    var marker = L.circleMarker([-12.97, -38.51], {
-        color: 'green',
-        radius: 12,
-        fillOpacity: 0.9
-    }).addTo(map).bindPopup("Bahia (Mestrado)");
-    
-    var marker = L.circleMarker([-20.44, -54.65], {
-        color: 'green',
-        radius: 12,
-        fillOpacity: 0.9
-    }).addTo(map).bindPopup("Mato Grosso (Mestrado)");
-    
-    var marker = L.circleMarker([-7.23, -39.32], {
-        color: 'orange',
-        radius: 12,
-        fillOpacity: 0.9
-    }).addTo(map).bindPopup("Ceará (UFCE) (Parceiro nacional)");
-    
-        L.polyline([
-            [-15.7684, -47.8695],
-            [-3.13, -60.02]
-        ], {
-            color: 'blue',
-            weight: 2,
-            opacity: 0.8
-        }).addTo(map);
+            <div class="folium-map" id="map_939bf1b16ab3708c3736c57bc1faa731" ></div>
         
-        L.polyline([
-            [-15.7684, -47.8695],
-            [0.03, -51.07]
-        ], {
-            color: 'green',
-            weight: 2,
-            opacity: 0.8
-        }).addTo(map);
-        
-        L.polyline([
-            [-15.7684, -47.8695],
-            [-12.97, -38.51]
-        ], {
-            color: 'green',
-            weight: 2,
-            opacity: 0.8
-        }).addTo(map);
-        
-        L.polyline([
-            [-15.7684, -47.8695],
-            [-20.44, -54.65]
-        ], {
-            color: 'green',
-            weight: 2,
-            opacity: 0.8
-        }).addTo(map);
-        
-        L.polyline([
-            [-15.7684, -47.8695],
-            [-7.23, -39.32]
-        ], {
-            color: 'orange',
-            weight: 2,
-            opacity: 0.8
-        }).addTo(map);
-        
-    var legend = L.control({position: 'bottomleft'});
-    legend.onAdd = function (map) {
-        var div = L.DomUtil.create('div', 'legend');
-        div.innerHTML += "<strong>Legenda</strong><br>";
-        div.innerHTML += '<i style="background: red"></i> Origem (CDS/UnB)<br>';
-        div.innerHTML += '<i style="background: blue"></i> Doutorado<br>';
-        div.innerHTML += '<i style="background: green"></i> Mestrado<br>';
-        div.innerHTML += '<i style="background: orange"></i> Parceiro nacional<br>';
-        return div;
-    };
-    legend.addTo(map);
-  </script>
+    
+<div style='position: fixed; 
+     bottom: 50px; left: 50px; width: 160px; height: 120px; 
+     background-color: white; z-index:9999; font-size:14px;
+     border:2px solid grey; padding: 10px;'>
+<b>Legenda</b><br>
+<i class="fa fa-map-marker fa-2x" style="color:red"></i>&nbsp;Sede do PPG<br>
+<i class="fa fa-map-marker fa-2x" style="color:blue"></i>&nbsp;Doutorado<br>
+<i class="fa fa-map-marker fa-2x" style="color:green"></i>&nbsp;Mestrado
+</div>
 </body>
+<script>
+    
+    
+            var map_939bf1b16ab3708c3736c57bc1faa731 = L.map(
+                "map_939bf1b16ab3708c3736c57bc1faa731",
+                {
+                    center: [-10.0, -52.0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 4,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_b287972801a62b3fa708ccfbd1dc9cab = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var marker_0203d5b5ef0b99bd7b85147915d976c9 = L.marker(
+                [-15.7684, -47.8695],
+                {}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var icon_b17fb42f7eb1eb331d00d9f523400fd2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_0203d5b5ef0b99bd7b85147915d976c9.setIcon(icon_b17fb42f7eb1eb331d00d9f523400fd2);
+        
+    
+        var popup_df4dad5156c2e9237953627c5e197788 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_4003c4bf1973bd6142ccb0f9c40391a0 = $(`<div id="html_4003c4bf1973bd6142ccb0f9c40391a0" style="width: 100.0%; height: 100.0%;">CDS/UnB<br>Sede do PPG</div>`)[0];
+            popup_df4dad5156c2e9237953627c5e197788.setContent(html_4003c4bf1973bd6142ccb0f9c40391a0);
+        
+
+        marker_0203d5b5ef0b99bd7b85147915d976c9.bindPopup(popup_df4dad5156c2e9237953627c5e197788)
+        ;
+
+        
+    
+    
+            var marker_376873e3e3df2af5409e0042c8c8c721 = L.marker(
+                [-3.13, -60.02],
+                {}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var icon_cf607850c29d6e1565297662dc5bd514 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_376873e3e3df2af5409e0042c8c8c721.setIcon(icon_cf607850c29d6e1565297662dc5bd514);
+        
+    
+        var popup_9f62ac5e0e1d5fb4faaecc242dcd2a99 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_96b9acacb1a5bd174e17aff5ee335699 = $(`<div id="html_96b9acacb1a5bd174e17aff5ee335699" style="width: 100.0%; height: 100.0%;">Amazonas<br>Doutorado</div>`)[0];
+            popup_9f62ac5e0e1d5fb4faaecc242dcd2a99.setContent(html_96b9acacb1a5bd174e17aff5ee335699);
+        
+
+        marker_376873e3e3df2af5409e0042c8c8c721.bindPopup(popup_9f62ac5e0e1d5fb4faaecc242dcd2a99)
+        ;
+
+        
+    
+    
+            var marker_75ca92b20b83faf421b5ec51e0776333 = L.marker(
+                [0.03, -51.07],
+                {}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var icon_d8b3c613fe4249000fa768a8eb562b33 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_75ca92b20b83faf421b5ec51e0776333.setIcon(icon_d8b3c613fe4249000fa768a8eb562b33);
+        
+    
+        var popup_6f967032a70af1a58ac36d36a2260a0f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a95c7b3d427db0b0e9388dd77ecf1469 = $(`<div id="html_a95c7b3d427db0b0e9388dd77ecf1469" style="width: 100.0%; height: 100.0%;">Amapá<br>Mestrado</div>`)[0];
+            popup_6f967032a70af1a58ac36d36a2260a0f.setContent(html_a95c7b3d427db0b0e9388dd77ecf1469);
+        
+
+        marker_75ca92b20b83faf421b5ec51e0776333.bindPopup(popup_6f967032a70af1a58ac36d36a2260a0f)
+        ;
+
+        
+    
+    
+            var marker_3f4eab6bd14b77e788d3113c6154b0ad = L.marker(
+                [-12.97, -38.51],
+                {}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var icon_8666ea6d47f4d61cfe4c35b0e13dbc60 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_3f4eab6bd14b77e788d3113c6154b0ad.setIcon(icon_8666ea6d47f4d61cfe4c35b0e13dbc60);
+        
+    
+        var popup_8049b21c4b00776ddb022f066760943f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_29df49dc1da2a67f6a8f7e4bbbe31a08 = $(`<div id="html_29df49dc1da2a67f6a8f7e4bbbe31a08" style="width: 100.0%; height: 100.0%;">Bahia<br>Mestrado</div>`)[0];
+            popup_8049b21c4b00776ddb022f066760943f.setContent(html_29df49dc1da2a67f6a8f7e4bbbe31a08);
+        
+
+        marker_3f4eab6bd14b77e788d3113c6154b0ad.bindPopup(popup_8049b21c4b00776ddb022f066760943f)
+        ;
+
+        
+    
+    
+            var marker_bc7f37eb841b9da75b082a544023c15b = L.marker(
+                [-20.44, -54.65],
+                {}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var icon_cdfefc29a1943f6c076a9dc6f58e1ed5 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_bc7f37eb841b9da75b082a544023c15b.setIcon(icon_cdfefc29a1943f6c076a9dc6f58e1ed5);
+        
+    
+        var popup_be0388c75969b749dd646074a925eaaf = L.popup({"maxWidth": "100%"});
+
+        
+            var html_bbf6a16bb1faf892fd2de92b5853537f = $(`<div id="html_bbf6a16bb1faf892fd2de92b5853537f" style="width: 100.0%; height: 100.0%;">Mato Grosso do Sul<br>Mestrado</div>`)[0];
+            popup_be0388c75969b749dd646074a925eaaf.setContent(html_bbf6a16bb1faf892fd2de92b5853537f);
+        
+
+        marker_bc7f37eb841b9da75b082a544023c15b.bindPopup(popup_be0388c75969b749dd646074a925eaaf)
+        ;
+
+        
+    
+    
+            var marker_186a1c19f8c9c4d98427a7df8ffaa70e = L.marker(
+                [-7.23, -39.32],
+                {}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var icon_7e7e071fde716bf58a35cfe416ad4ef6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_186a1c19f8c9c4d98427a7df8ffaa70e.setIcon(icon_7e7e071fde716bf58a35cfe416ad4ef6);
+        
+    
+        var popup_5b448437563dc00fc6d2eaa9cac2df0d = L.popup({"maxWidth": "100%"});
+
+        
+            var html_1dd748e9c4637c88faa5a7629adcd472 = $(`<div id="html_1dd748e9c4637c88faa5a7629adcd472" style="width: 100.0%; height: 100.0%;">Ceará (UFCA)<br>Doutorado</div>`)[0];
+            popup_5b448437563dc00fc6d2eaa9cac2df0d.setContent(html_1dd748e9c4637c88faa5a7629adcd472);
+        
+
+        marker_186a1c19f8c9c4d98427a7df8ffaa70e.bindPopup(popup_5b448437563dc00fc6d2eaa9cac2df0d)
+        ;
+
+        
+    
+    
+            var poly_line_216139566563c20bdede9f76efc27853 = L.polyline(
+                [[-3.13, -60.02], [-15.7684, -47.8695]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var poly_line_73b056394b9321afb4541d53adb9aa46 = L.polyline(
+                [[0.03, -51.07], [-15.7684, -47.8695]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var poly_line_16a4c84ee4f042ad96f1bc4da0e5e4c5 = L.polyline(
+                [[-12.97, -38.51], [-15.7684, -47.8695]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var poly_line_e65beef9888da7f7e7b460611eb22784 = L.polyline(
+                [[-12.97, -38.51], [-15.7684, -47.8695]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var poly_line_ed25a4b7880987a0b7ae719fb634c247 = L.polyline(
+                [[-12.97, -38.51], [-15.7684, -47.8695]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var poly_line_de1c2807d8464cf834e7fe4730543854 = L.polyline(
+                [[-12.97, -38.51], [-15.7684, -47.8695]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var poly_line_859d9ec133819f2e87845bff77767946 = L.polyline(
+                [[-20.44, -54.65], [-15.7684, -47.8695]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var poly_line_a4173bb8086d61ffa163d2b3c863f5cf = L.polyline(
+                [[-20.44, -54.65], [-15.7684, -47.8695]],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "green", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+    
+            var poly_line_ad2bcd623d7d0e72633c5fb6cbf21c1d = L.polyline(
+                [[-7.23, -39.32], [-15.7684, -47.8695]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.8, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_939bf1b16ab3708c3736c57bc1faa731);
+        
+</script>
 </html>
